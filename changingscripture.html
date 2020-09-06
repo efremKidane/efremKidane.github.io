@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Applied Scripture</title>
+<script>
+
+function applyScripture() {
+
+var name = document.getElementById('nameInputBox').value;
+
+var scripture = "No longer shall your name be called " + name + ", but your name shall be efi"+" for I have made you the father of a multitude of nations.";;
+
+document.getElementById('outputDiv').innerHTML = scripture;
+}
+</script>
+</head>
+<body>
+Please enter your name: <input type="text" id="nameInputBox">
+<button type="button" onclick="applyScripture()">verse</button>
+<div id="outputDiv"></div>
+
+<p>
+    <a href="https://validator.w3.org/check/referer">
+    <img src="https://rashrestha.github.io/w3c-html.png">
+    </a>
+    
+</p>
+
+</body>
+</html>
+
+
