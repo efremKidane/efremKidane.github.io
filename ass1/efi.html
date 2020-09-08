@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="description" content="A donation app written in Javascript">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Donation App</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=Poppins:wght@600;700&family=Material+Icons&display=swap" rel="stylesheet">
+<style id="jsbin-css">
+*, :after, :before {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  background-color: #fafbff;
+  height: 100%;
+}
+  body * {
+    font-size: 15px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.2;
+    box-sizing: border-box;
+    
+  }
+
+#app {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+  h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 23px;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.75rem;
+  }
+
+.container {
+  width: 65%;
+}
+  .container .bubble {
+    position: relative;
+    margin-bottom: 15px;
+    padding: 10px;
+    color: #4e6cb3;
+    background-color: #e3eafa;
+    border-radius: 5px;
+  }
+    .container .bubble:before {
+      position: absolute;
+      content: '';
+      bottom: -10px;
+      right: 20px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid #0000;
+      border-right: 10px solid #0000;
+      border-top: 10px solid #e3eafa;
+      font-size: 0;
+      line-height: 0;
+    }
+  .container .section {
+    border-radius: 5px;
+    border: 1px solid #f7f9ff;
+    background-color: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 .15rem 0.525rem 0 rgba(54, 141, 255, 0.1);
+  }
+  .container .section .range {
+    height: 10px;
+    background-color: #b5f1e5;
+  }
+    .container .section .range > div {
+      height: 100%;
+      width: 0;
+      background-color: #2bcca3;
+      transition: 0.15s linear;
+      -webkit-transition: 0.15s linear;
+    }
+.container .section .body {
+  padding: 26px;
+}
+  .container .status {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    line-height: 1.45rem;
+  }
+    .container .status.error {
+      color: #f3376b;
+    }
+    .container .status.success {
+      color: #2bcca3;
+    }
+
+  .container .section .body p {
+    color: #5f667e;
+    line-height: 1.25rem;
+  }
+  .container .section .body strong {
+    color: #1f2129;
+    font-weight: 600;
+  }
+  .container .section .form {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-items: stretch;
+    margin-top: 16px;
+    width: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+    .container .section .form * {
+      margin: 0;
+      padding: 8px;
+      border: 0 none;
+      outline: 0 none;
+      line-height: 1.45rem;
+    }
+    .container .section .form .currency {
+      position: absolute;
+      top: 0.12rem;
+      font-size: 19px;
+      color: rgba(54, 141, 255, 0.35);
+    }
+    .container .section .form .amount {
+      flex: 1 0 auto;
+      padding-left: 22px;
+      font-size: 19px;
+      border: 1px solid rgba(54, 141, 255, 0.2);
+      border-right: 0 none;
+      font-weight: 700;
+      box-shadow: inset 0px 0px 2px 0px rgba(54, 141, 255, 0.14);
+      border-radius: 3px 0 0 3px;
+    }
+    .container .section .form.error input {
+      border-color: #f3376b
+    }
+    .container .section .form.error #submit {
+      background-color: #f3376b
+    }
+    .container #submit {
+      flex-basis: 25%;
+      min-width: 100px;
+      color: #ffffff;
+      background-color: #2BCCA3;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 0 3px 3px 0;
+    }
+
+.material-icons {
+  margin-right: 6px;
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+</style>
+</head>
+<body>
+
+  <div id="app">
+    <div class="container">
+      <div class="bubble">$<span class="amount-left">0</span> still needed to fund this project</div>
+      <div class="section">
+        <div class="range"><div></div></div>
+        <div class="body">
+          <h3>Only four days left to fund this project</h3>
+          <p>Join the <strong class="donors">0</strong> other donors who have already supported this project.</p>
+          <div class="status">
+            <i class="material-icons icon"></i>
+            <span></span>
+          </div>
+          <div class="form">
+            <span class="currency">$</span>
+            <input type="number" class="amount" required>
+            <button id="submit">Give Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<script id="jsbin-javascript">
+// Donation Goal
+const DONATION_GOAL = 5000,
+      MIN_AMOUNT = 5;
+
+let // Initial values
+    donationValue = 5000,
+    currentDonationValue = 0,
+    counter = 0,
+    
+    // Declare elements
+    submit = document.querySelector('#submit'),
+    amountInput = document.querySelector('.amount'),
+    amountLeft = document.querySelector('.amount-left'),
+    range = document.querySelector('.range > div'),
+    totalDonor = document.querySelector('.donors'),
+    status = document.querySelector('.status');
+
+/**
+ * Execute the event handler on page load
+ */
+window.addEventListener('load', (e) => {  
+  document.addEventListener('keydown', (e) => {
+    if (e.code == 'Enter' && amountInput.length !== 0) {
+      checkDonationAmount(amountInput.value);
+    }
+  })
+  submit.addEventListener('click', (e) => {
+    checkDonationAmount(amountInput.value);
+  })
+});
+
+/**
+ * Ensure the entered amount is handled properly
+ *
+ * @param int amount    The amount entered from the input field
+ * @return object
+ */
+checkDonationAmount = ((amount) => {
+  // Ensure something was entered in the text field
+  if (amount.length) {
+    // Display the status message
+    status.style.display = 'flex';
+    
+    // Check if amount entered is a number or greater than 5
+    if (isNaN(amount) || parseInt(amount) < MIN_AMOUNT) {
+      statusHandler('error');
+    } else {
+      transactionHandler();
+      statusHandler('success');
+    }
+  }
+});
+
+/**
+ * Perform calculation that handles the donation amount,
+ * and update the UI accordingly
+ *
+ * @return
+ */
+transactionHandler = ((e) => {
+  counter++;
+  totalDonor.innerHTML = counter;
+  currentDonationValue = (donationValue -= amountInput.value);
+  amountLeft.innerHTML = currentDonationValue.toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+  let rangeTotal = ((DONATION_GOAL - currentDonationValue)/DONATION_GOAL) * 100;
+  // Increase length of bar
+  range.style.width = rangeTotal + '%';
+  
+  // If goal is reached
+  if (currentDonationValue <= 0) {
+    document.querySelector('.body h3').innerHTML = '🎉 Woohoo. We did it!';
+    document.querySelector('.bubble').style.display = 'none';
+  }
+});
+
+/**
+ * Manage the success and error state and
+ * update the UI accordingly
+ *
+ * @param string str    String that takes 'success' or 'error' as argument
+ * @return
+ */
+statusHandler = ((str) => {
+  switch(str) {
+    case 'error':
+      strStatus = {
+        'class': 'error',
+        'icon': 'error',
+        'message': 'Amount must be $' + MIN_AMOUNT + ' or more'
+      };
+      break;
+    case 'success':
+      strStatus = {
+        'class': 'success',
+        'icon': 'favorite',
+        'message': 'Thank you for your support'
+      };
+      break;
+  }
+  
+  // Update DOM elements with it's appropriate classes
+  document.querySelector('.form').className = `form ${strStatus.class}`;
+  status.className = `status ${strStatus.class}`;
+  status.getElementsByTagName('i')[0].innerHTML = `${strStatus.icon}`;
+  status.getElementsByTagName('span')[0].innerHTML = `${strStatus.message}`;
+});
+</script>
+
+
+<script id="jsbin-source-css" type="text/css">*, :after, :before {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  background-color: #fafbff;
+  height: 100%;
+}
+  body * {
+    font-size: 15px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.2;
+    box-sizing: border-box;
+    
+  }
+
+#app {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+  h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 23px;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.75rem;
+  }
+
+.container {
+  width: 65%;
+}
+  .container .bubble {
+    position: relative;
+    margin-bottom: 15px;
+    padding: 10px;
+    color: #4e6cb3;
+    background-color: #e3eafa;
+    border-radius: 5px;
+  }
+    .container .bubble:before {
+      position: absolute;
+      content: '';
+      bottom: -10px;
+      right: 20px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid #0000;
+      border-right: 10px solid #0000;
+      border-top: 10px solid #e3eafa;
+      font-size: 0;
+      line-height: 0;
+    }
+  .container .section {
+    border-radius: 5px;
+    border: 1px solid #f7f9ff;
+    background-color: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 .15rem 0.525rem 0 rgba(54, 141, 255, 0.1);
+  }
+  .container .section .range {
+    height: 10px;
+    background-color: #b5f1e5;
+  }
+    .container .section .range > div {
+      height: 100%;
+      width: 0;
+      background-color: #2bcca3;
+      transition: 0.15s linear;
+      -webkit-transition: 0.15s linear;
+    }
+.container .section .body {
+  padding: 26px;
+}
+  .container .status {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    line-height: 1.45rem;
+  }
+    .container .status.error {
+      color: #f3376b;
+    }
+    .container .status.success {
+      color: #2bcca3;
+    }
+
+  .container .section .body p {
+    color: #5f667e;
+    line-height: 1.25rem;
+  }
+  .container .section .body strong {
+    color: #1f2129;
+    font-weight: 600;
+  }
+  .container .section .form {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-items: stretch;
+    margin-top: 16px;
+    width: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+    .container .section .form * {
+      margin: 0;
+      padding: 8px;
+      border: 0 none;
+      outline: 0 none;
+      line-height: 1.45rem;
+    }
+    .container .section .form .currency {
+      position: absolute;
+      top: 0.12rem;
+      font-size: 19px;
+      color: rgba(54, 141, 255, 0.35);
+    }
+    .container .section .form .amount {
+      flex: 1 0 auto;
+      padding-left: 22px;
+      font-size: 19px;
+      border: 1px solid rgba(54, 141, 255, 0.2);
+      border-right: 0 none;
+      font-weight: 700;
+      box-shadow: inset 0px 0px 2px 0px rgba(54, 141, 255, 0.14);
+      border-radius: 3px 0 0 3px;
+    }
+    .container .section .form.error input {
+      border-color: #f3376b
+    }
+    .container .section .form.error #submit {
+      background-color: #f3376b
+    }
+    .container #submit {
+      flex-basis: 25%;
+      min-width: 100px;
+      color: #ffffff;
+      background-color: #2BCCA3;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 0 3px 3px 0;
+    }
+
+.material-icons {
+  margin-right: 6px;
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+</script>
+
+<script id="jsbin-source-javascript" type="text/javascript">// Donation Goal
+const DONATION_GOAL = 5000,
+      MIN_AMOUNT = 5;
+
+let // Initial values
+    donationValue = 5000,
+    currentDonationValue = 0,
+    counter = 0,
+    
+    // Declare elements
+    submit = document.querySelector('#submit'),
+    amountInput = document.querySelector('.amount'),
+    amountLeft = document.querySelector('.amount-left'),
+    range = document.querySelector('.range > div'),
+    totalDonor = document.querySelector('.donors'),
+    status = document.querySelector('.status');
+
+/**
+ * Execute the event handler on page load
+ */
+window.addEventListener('load', (e) => {  
+  document.addEventListener('keydown', (e) => {
+    if (e.code == 'Enter' && amountInput.length !== 0) {
+      checkDonationAmount(amountInput.value);
+    }
+  })
+  submit.addEventListener('click', (e) => {
+    checkDonationAmount(amountInput.value);
+  })
+});
+
+/**
+ * Ensure the entered amount is handled properly
+ *
+ * @param int amount    The amount entered from the input field
+ * @return object
+ */
+checkDonationAmount = ((amount) => {
+  // Ensure something was entered in the text field
+  if (amount.length) {
+    // Display the status message
+    status.style.display = 'flex';
+    
+    // Check if amount entered is a number or greater than 5
+    if (isNaN(amount) || parseInt(amount) < MIN_AMOUNT) {
+      statusHandler('error');
+    } else {
+      transactionHandler();
+      statusHandler('success');
+    }
+  }
+});
+
+/**
+ * Perform calculation that handles the donation amount,
+ * and update the UI accordingly
+ *
+ * @return
+ */
+transactionHandler = ((e) => {
+  counter++;
+  totalDonor.innerHTML = counter;
+  currentDonationValue = (donationValue -= amountInput.value);
+  amountLeft.innerHTML = currentDonationValue.toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+  let rangeTotal = ((DONATION_GOAL - currentDonationValue)/DONATION_GOAL) * 100;
+  // Increase length of bar
+  range.style.width = rangeTotal + '%';
+  
+  // If goal is reached
+  if (currentDonationValue <= 0) {
+    document.querySelector('.body h3').innerHTML = '🎉 Woohoo. We did it!';
+    document.querySelector('.bubble').style.display = 'none';
+  }
+});
+
+/**
+ * Manage the success and error state and
+ * update the UI accordingly
+ *
+ * @param string str    String that takes 'success' or 'error' as argument
+ * @return
+ */
+statusHandler = ((str) => {
+  switch(str) {
+    case 'error':
+      strStatus = {
+        'class': 'error',
+        'icon': 'error',
+        'message': 'Amount must be $' + MIN_AMOUNT + ' or more'
+      };
+      break;
+    case 'success':
+      strStatus = {
+        'class': 'success',
+        'icon': 'favorite',
+        'message': 'Thank you for your support'
+      };
+      break;
+  }
+  
+  // Update DOM elements with it's appropriate classes
+  document.querySelector('.form').className = `form ${strStatus.class}`;
+  status.className = `status ${strStatus.class}`;
+  status.getElementsByTagName('i')[0].innerHTML = `${strStatus.icon}`;
+  status.getElementsByTagName('span')[0].innerHTML = `${strStatus.message}`;
+});
+
+</script></body>
+</html>
