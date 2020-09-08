@@ -14,4 +14,4 @@ function longest(str) {
   return longest_word_length;
   }
 
-  console.log(longest(["efi","nardi","love"]))
+  alert(longest(["efi","nardi","love"]))

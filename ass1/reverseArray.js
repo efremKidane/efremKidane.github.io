@@ -9,7 +9,7 @@ function reversefArray(arr){
     return reversedArray;
 }
 
-console.log(reversefArray(["A","B","C"]));
+alert(reversefArray(["A","B","C"]));
 
 
 
@@ -27,4 +27,4 @@ function reverseArray(arr){
     return arr;
 }
 
-console.log(reverseArray([1,2,3,4,5,6]));
+alert(reverseArray([1,2,3,4,5,6]));

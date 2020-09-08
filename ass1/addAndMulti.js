@@ -7,7 +7,7 @@ function sum(numbers) {
 	return total;
 }
 // Print out the total to the console
-console.log(sum([1,2,3,4]));
+alert(sum([1,2,3,4]));
 
 
 
@@ -20,4 +20,4 @@ function multiply(numbers) {
 	return total;
 }
 // Print out the total to the console
-console.log(multiply([1,2,3,4]));
+alert(multiply([1,2,3,4]));
