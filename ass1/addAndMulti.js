@@ -1,23 +1,35 @@
-// Set addition
-function sum(numbers) {
+
+
+"use strict";
+/* eslint-disable */
+/** 
+ * @param {object} arr is an array input.
+ * @returns sum of the array values. 
+*/
+
+function sum(arr) {
 	var total = 0;
-	for (var i = 0; i < numbers.length; i++) {
-		total += numbers[i];
+	for (var i = 0; i < arr.length; i++) {
+		total += arr[i];
 	}
 	return total;
 }
-// Print out the total to the console
+
 alert(sum([1,2,3,4]));
 
+/**
+ * 
+ * @param {*} arr2 is an array of numbers.
+ * @returns product of the array values.
+ */
 
 
-// Set multiplication
-function multiply(numbers) {
+function multiply(arr2) {
 	var total = 1;
-	for (var i = 0; i < numbers.length; i++) {
-		total = (total * numbers[i]);
+	for (var i = 0; i < arr2.length; i++) {
+		total = (total * arr2[i]);
 	}
 	return total;
 }
-// Print out the total to the console
+
 alert(multiply([1,2,3,4]));

@@ -1,17 +1,24 @@
+"use strict";
+/* eslint-disable */
+/**
+ * .
+ * @param {str}.
 
+ * @returns The sum of the two numbers.
+ */
 function longest(str) {
     
-    let word;
+    
   
-    let longest_word_length = 0;
+    let longestWordLength = 0;
   
    for(var i = 0; i < str.length; i++){
-     if(longest_word_length < str[i].length){
-         longest_word_length = str[i].length;
+     if(longestWordLength < str[i].length){
+         longestWordLength = str[i].length;
         
      }
   }
-  return longest_word_length;
+  return longestWordLength;
   }
 
-  alert(longest(["efi","nardi","love"]))
+  alert(longest(["efi","nardi","love"]));

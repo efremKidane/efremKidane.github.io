@@ -1,18 +1,16 @@
-function maxOfThree(a, b, c) {
-    if (a > b) {
-        b = a;
-    }
-    else {
-        a = b;
-    }
+"use strict";
+/* eslint-disable */
+/**
+ * 
+ * @param {int} num1 
+ * @param {int} num2 
+ * @param {int} num3 
+ * @returns returns the maximum.
+ */
 
-    if (c > a) {
-        return c;
-    }
-
-    else {
-        return a;
-    }
+function maxOfThree(num1,num2,num3) {
+    let max=Math.max (num1,num2,num3);
+    return max;
 }
 
 alert(maxOfThree(4, 5, 0));
