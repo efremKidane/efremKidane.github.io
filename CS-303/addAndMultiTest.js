@@ -1,5 +1,8 @@
 "use strict";
 /* global sum assert */
+/** 
+ * 
+ */
 describe("sum", function() {
 
     it("adiition of values 1, 2 ,3 is 6", function() {
