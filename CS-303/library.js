@@ -1,7 +1,6 @@
 /*eslint-disable*/
-/**
- * 
- */
+
+ 
 let Library = [
     {
         title: "The Road Ahead",
@@ -48,7 +47,9 @@ function showTitle() {
     let result = Library.map(item => {
         return item.title
     })
+   
     document.getElementById('txtarea').innerHTML = result.join('\n')
+    
 
 
 
@@ -75,3 +76,47 @@ function showId() {
     document.getElementById('txtarea').innerHTML = result.join('\n')
 
 }
+
+function scramble() {
+
+    let result = Library.map(item => {
+        return item.title
+    
+});
+ 
+ let oneString = result.join(" ");
+ let arryOfWords=oneString.split(" ");
+ 
+
+ let word1=[];
+
+   for (n of arryOfWords){
+     if (n.length === 2){
+        word1.push(n);
+       
+     }
+   
+    }
+    
+    let word2=[];
+    for (n of arryOfWords){
+        if (n.length === 3){
+           word2.push(n);
+          
+        }
+      
+    }
+      
+        let word3=[];
+        for (n of arryOfWords){
+            if (n.length === 4){
+               word3.push(n);
+              
+            }
+      
+       }
+     document.getElementById('txtarea').innerHTML = word1+ "\n" +word2 + "\n"+ word3;
+    }
+   
+
+
