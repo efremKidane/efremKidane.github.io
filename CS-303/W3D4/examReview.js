@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 function printHour(end){
 
     setTimeout( function stopWatch(){
