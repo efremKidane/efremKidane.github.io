@@ -64,11 +64,11 @@ function drawBoard() {
                 if (checkWinner())
                 {
                     if(currentPlayer == 0){
-                    alert("congratulation!! player 1 you win")
+                    alert("congratulation!! player 1 you win with sets "+ player1Selections)
                         points1++;
                     }
                     else {
-                        alert("congratulation!! player 2 you win")
+                        alert("congratulation!! player 2 you win with sets "+ player2Selections)
                         points2++;
                     
                     }
