@@ -3,36 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://bootswatch.com/4/spacelab/bootstrap.min.css">
-    <link href="./style.css" rel="stylesheet"/>
-    <script src="./canteen.js"></script>
-    <script src="./action.js"></script>
+    <title>Log In To Library</title>
+    
 </head>
 <body>
-    <div id="main">
-        <h1 class="head-4">Library of Books</h1>
-        <label>Please enter your name:</label> 
-        <input type="text" id="student_name"/>
-        <button onclick="pullInfo()">Pull Info</button><div id="info"></div></br><br/>
-        <button onclick="add(event)" value="book1"><img src="https://i.pinimg.com/236x/0b/61/1c/0b611c4a2f7aa26eae7189763984f51c.jpg" width="100" height="200"/></button>
-        <button onclick="add(event)" value="book2"><img src="https://static01.nyt.com/images/2019/12/22/books/review/22BestCovers-Dorfman-02/22BestCovers-Dorfman-02-superJumbo.jpg?quality=90&auto=webp" width="100" height="200"/></button>
-        <button onclick="add(event)" value="book3"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQA-QlAznKCti2ivjTbHUpbqQcV6XvsLNHBkg&usqp=CAU" width="100" height="200"></button>
-        <button onclick="add(event)" value="book4"><img src="https://images-na.ssl-images-amazon.com/images/I/51yqJ6K32mL._SX327_BO1,204,203,200_.jpg" width="100" height="200"></button>
-        
-        <table id="shopping_cart">
-            <caption>Loan List</caption>
-            <tr><th>ISBN#</th><th>Due Date</th><th>Title</th></tr>
-        </table>
+    <form class="log" style="background-color: cadetblue; margin: 0px 200px; padding: 8% 2%;">
+     <div class="main" style="text-align: center; font-size: larger;">
+        <h1>Welcome To Library</h1><br/>
+      name <br/><input id="name" type="text" style="margin: 0px 8px;"><br/>
+      member Id <br/><input id="memberId" type="password" style="margin: 10px 8px ;"><br/>
+      <form  >
+        <button  type="button" onclick="logIn()">logIn</button>
+    </form>
+                
+    
+    </form>
 
-        <br/><br/><button id="btn-purchase" onclick="makeBorrow()">Borrow</button>
-        <button id="btn-reset" onclick="resetShoppingCart()">Reset</button>
 
-        <table id="borrowed-books">
-            <caption>Loan List</caption>
-            <tr><th>ISBN#</th><th>Due Date</th><th>Returned Date</th><th>Charge</th></tr>
-        </table>
-        <br/><br/><button id="btn-reset" onclick="returnBorrowedBooks()">Return</button>
-        </div>
+
+
+    </div>
+    <script src="action.js"></script>
+    <script  src="canteen.js"></script>
 </body>
 </html>

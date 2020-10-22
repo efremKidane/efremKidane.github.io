@@ -1,3 +1,4 @@
+/*eslint-disable */
 let currentStudent;
 
 function add(evt) {
@@ -49,7 +50,7 @@ function logIn() {
            
             document.getElementById('name').value = '';
             document.getElementById('memberId').value = '';
-            return window.location.href = "./index.html";
+            return window.location.href = "./libraryOfBooks.html";
 
 
         }
