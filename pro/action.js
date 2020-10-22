@@ -89,7 +89,7 @@ function makeBorrow() {
 
     let loan = currentStudent.borrowedBooks;
     loan.forEach((books) => borrowedBooks(books));
-
+ 
     pullInfo();
     resetBorrowingList();
 }
@@ -99,7 +99,7 @@ function resetBorrowingList() {
     for (let i = rows.length; i > 0; i--) {
         table.deleteRow(i);
     }
-    shoppingCart = [];
+    currentStudent = [];
 }
 
 function borrowedBooks(books) {
