@@ -48,8 +48,8 @@ async function deleteBook(deleteId, index) {
                                     the book with  ISBN ${data[index].isbn}
                                     with title ${data[index].title}`);
     if (confirmation === true) {
-        
-       
+
+
         data.splice(index, 1);
         buildTable(data);
 
@@ -60,42 +60,42 @@ async function deleteBook(deleteId, index) {
         });
         showSuccessDelete()
         const restData = await result.json();
-        
+
     }
-} 
+}
 
 // editing the existing data of collections in the api as well as in the table of book collection page
 
-function editBook(bookId, index){
+function editBook(bookId, index) {
     let id = bookId;
-   
+
     document.querySelector(".container").innerHTML = x;
     document.querySelector("#isbn").value = data[index].isbn;
     document.querySelector("#bookTitle").value = data[index].title;
     document.querySelector("#overdueFee").value = data[index].overdueFee;
     document.querySelector("#publisher").value = data[index].publisher;
     document.querySelector("#dateOfPublished").value = data[index].datePublished;
-    
-  document.querySelector("#edit").onclick = async function update(){
-    const login_url = `https://elibraryrestapi.herokuapp.com/elibrary/api/book/update/${id}`;
 
-    const result = await fetch(login_url, {
-        method: 'PUT',
-        body : JSON.stringify({
-            isbn : document.querySelector("#isbn").value,
-            title : document.querySelector("#bookTitle").value,
-            overdueFee: document.querySelector("#overdueFee").value,
-            publisher: document.querySelector("#publisher").value,
-            datePublished: document.querySelector("#dateOfPublished").value
-        }),
-        headers: {
-            'content-type': 'application/json; charset=UTF-8'
-        }
-    });
-    const restData = await result.json();
-    clearField();
-     showSuccessUpdate();
-}
+    document.querySelector("#edit").onclick = async function update() {
+        const login_url = `https://elibraryrestapi.herokuapp.com/elibrary/api/book/update/${id}`;
+
+        const result = await fetch(login_url, {
+            method: 'PUT',
+            body: JSON.stringify({
+                isbn: document.querySelector("#isbn").value,
+                title: document.querySelector("#bookTitle").value,
+                overdueFee: document.querySelector("#overdueFee").value,
+                publisher: document.querySelector("#publisher").value,
+                datePublished: document.querySelector("#dateOfPublished").value
+            }),
+            headers: {
+                'content-type': 'application/json; charset=UTF-8'
+            }
+        });
+        const restData = await result.json();
+        clearField();
+        showSuccessUpdate();
+    }
 
 }
 
@@ -119,9 +119,9 @@ function showSuccessUpdate() {
     </div>
 </div>`
 
-setTimeout(()=>{ 
-    window.location.href = "./books.html";
-},2000)
+    setTimeout(() => {
+        window.location.href = "./books.html";
+    }, 2000)
 
 }
 
@@ -135,9 +135,9 @@ function showSuccessDelete() {
     </div>
 </div>`
 
-setTimeout(()=>{ 
-    window.location.href = "./books.html";
-},2000)
+    setTimeout(() => {
+        window.location.href = "./books.html";
+    }, 2000)
 
 }
 
@@ -154,8 +154,8 @@ setTimeout(()=>{
 
 // a page for edit book form
 
-  
-     const  x = `
+
+const x = `
     <div class="container pt-3 my-3">
         <h2 class="text-info">
             Edit Book Form
