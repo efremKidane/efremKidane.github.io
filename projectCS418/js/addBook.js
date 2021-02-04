@@ -9,7 +9,7 @@ function addBook() {
         datePublished: document.querySelector("#dateOfPublished").value
     };
 
-    //validation
+    //validation for the inputs
 
     function showWarning(message) {
         const div = document.createElement('div');
@@ -20,6 +20,8 @@ function addBook() {
         container.insertBefore(div, form);
         setTimeout(() => document.querySelector('.alert').remove(), 2000);
     }
+    
+    // suceefully added a book notifier
 
     function showSuccess(message) {
         const div = document.createElement('div');
@@ -31,9 +33,15 @@ function addBook() {
         setTimeout(() => document.querySelector('.alert').remove(), 2000);
     }
 
+      
+    // condition for the inputs are all filled or not
+
     if (bookAdd.isbn === '' || bookAdd.title === '' || bookAdd.overdueFee === '' || bookAdd.publisher === '' || bookAdd.datePublished === '') {
         showWarning('please fill in all fields');
     }
+    
+
+    // function for adding a new book to the api
 
     else {
         async function bookToAdd(book) {
@@ -57,6 +65,9 @@ function addBook() {
     }
 }
 
+
+ // clearing the field of the inputs after adding a new book
+ 
 function clearField() {
     document.querySelector("#isbn").value = '';
     document.querySelector("#bookTitle").value = '';
