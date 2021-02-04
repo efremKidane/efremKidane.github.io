@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+        <a class="navbar-brand" href="#">The CityLibrary </a>
+        <a class="navbar-brand" href="#">: : : </a>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-30px mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="./index.html">Home </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="./about.html" >About Us </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./virtualTour.html" >Virtual Tour</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="./books.html" >Books</a>
+                </li>
+
+            </ul>
+        </div>
+
+    </nav>
+    <div class="container pt-3 my-3  ">
+        <h2 class="text-info">
+            New Book Form
+        </h2></br>
+       <p><b>Note:</b> Form field marked with asterisk (*) are required.</p>
+        <form>
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="inputAddress">*Book title</label>
+                    <input type="text" class="form-control" id="bookTitle" placeholder="">
+                </div>
+
+            </div></br>
+            <div class="row">
+                <div class="col">
+                    <label for="inputAddress">*ISBN</label>
+                    <input type="text" class="form-control" id="isbn">
+                </div>
+                <div class="col">
+                    <label for="inputAddress">*Overdue Fee per day</label>
+                    <input type="text" class="form-control" placeholder="0.00" id ="overdueFee">
+                </div>
+            </div></br>
+
+            <div class="row">
+                <div class="col">
+                    <label for="inputAddress">*Publisher</label>
+                    <input type="text" class="form-control" id ="publisher">
+                </div>
+                <div class="col">
+                    <label for="inputAddress">*Date of Published</label>
+                    <input type="text" class="form-control" placeholder="" id ="dateOfPublished">
+                </div>
+            </div></br>
+
+            <div class="float-right">
+                 
+                <button type="button" class="btn btn-outline-danger pull-right" onclick="clearField()">Reset</button>
+                <button type="button" class="btn btn-outline-success pull-right" id ="edit">Save Book</button>
+            </div>
+        </form>
+    </div>
+    <script src="./js/addBook.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+
+</html>
