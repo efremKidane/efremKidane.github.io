@@ -48,8 +48,8 @@ async function deleteBook(deleteId, index) {
                                     the book with  ISBN ${data[index].isbn}
                                     with title ${data[index].title}`);
     if (confirmation === true) {
-        showSuccessDelete()
-
+        
+       
         data.splice(index, 1);
         buildTable(data);
 
@@ -58,9 +58,11 @@ async function deleteBook(deleteId, index) {
         const result = await fetch(login_url, {
             method: 'delete'
         });
+        showSuccessDelete()
         const restData = await result.json();
+        
     }
-}
+} 
 
 // editing the existing data of collections in the api as well as in the table of book collection page
 
